@@ -25,7 +25,34 @@ Canonical SHA-256 of `client/fixtures/locked-claim-set.demo.json` (`npm run demo
 
 `5f150b6e2762f14fc03a928ba950ea9156ba8f72290a28381d8f4ca926e90481`
 
-**Deploy note:** the program id is reserved in `declare_id!` / `program-id.txt`. Publishing to devnet is `./scripts/airdrop-devnet.sh` then `./scripts/deploy-devnet.sh`. The public faucet is often rate-limited; when it is, the program account will not appear on explorer until a funded deploy succeeds. A live sample tx belongs in this section after that deploy (signature + `https://explorer.solana.com/tx/<sig>?cluster=devnet`).
+**Live tx:** none yet — **do not invent a signature**. The SBF binary builds locally (`target/deploy/claimlock_attestation.so`, ~77KB). Deploy + demo are blocked until the attester is funded.
+
+**Pubkey that needs funding (devnet SOL):**
+
+`2562fyPRueCtmXqDQ7P2ozgT2gXsELqf5Pm82WMVQ3wm`
+
+Need about **1–2 SOL** on that address, then:
+
+```bash
+./scripts/deploy-devnet.sh
+cd client && CLAIMLOCK_KEYPAIR=../.keys/devnet-attester.json npm run demo
+```
+
+Paste the printed signature here as `https://explorer.solana.com/tx/<SIGNATURE>?cluster=devnet`.
+
+**Faucet attempts (2026-09-15, still 0 lamports):**
+
+| Source | Result |
+|--------|--------|
+| `solana airdrop` / `requestAirdrop` on `https://api.devnet.solana.com` | HTTP **429**: `You've either reached your airdrop limit today or the airdrop faucet has run dry. Please visit https://faucet.solana.com for alternate sources of test SOL` |
+| `https://faucet.solana.com/api/request` (amount 1 / 0.5 / 5) | `GitHub authentication is required. Please sign in with GitHub to use the faucet.` |
+| QuickNode faucet | Requires a **mainnet** SOL balance on the same wallet (anti-abuse) |
+| SolFaucet.com | Same public RPC; `internal error` / no tx id |
+| Pine Stake `POST https://api.pinestake.com/faucet` (own pool, ~0.61 SOL remaining) | `Login required` (GitHub OAuth + Cloudflare Turnstile) |
+| Blueshift `POST https://faucet-api.blueshift.gg/devnet/airdrop` (signed claim) | `Address not found. Please complete a Blueshift certification first.` (`is_certified: false`) |
+| Ellipsis Labs POW faucet | Remaining funded specs pay 0.02 SOL at difficulty 4, or ~100 lamports at difficulty 2; claiming still needs ~5k lamports of **tx fees** we do not have |
+
+This is a public-faucet outage / auth wall, not a program bug.
 
 ### Prerequisites
 
