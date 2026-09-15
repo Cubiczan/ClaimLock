@@ -1,0 +1,31 @@
+schema: spec-driven
+
+context: |
+  ClaimLock (Cubiczan) — propose → challenge → human-lock claims with Solana
+  attestation for Colosseum Crypto World's Fair. Cubiczan CHP / ServiceSell×FinBridge
+  is prior art; this repo focuses the crypto-native Solana wedge. Devnet only.
+  Brand: Cubiczan (never CubicZan). No invented mainnet traction or fake customers.
+  Native Solana program (not Anchor) with one instruction: attest_claim_hash.
+  Never commit private key JSON.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

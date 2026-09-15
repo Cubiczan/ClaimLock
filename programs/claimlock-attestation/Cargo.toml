@@ -1,0 +1,17 @@
+[package]
+name = "claimlock-attestation"
+version = "0.1.0"
+description = "Minimal ClaimLock claim-hash attestation program (Solana devnet)"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "claimlock_attestation"
+
+[features]
+no-entrypoint = []
+
+[dependencies]
+solana-program = "2.2"

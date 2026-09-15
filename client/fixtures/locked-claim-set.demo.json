@@ -1,0 +1,31 @@
+{
+  "schema": "claimlock-v0",
+  "kind": "demo-composite",
+  "disclaimer": "Synthetic locked claim-set for the Colosseum Crypto World's Fair demo. No customers, no PII, no invented production balances or mainnet traction.",
+  "period": "2026-Q3",
+  "workflow": "propose → challenge → human-lock → attest",
+  "status": "human-locked",
+  "claims": [
+    {
+      "id": "CLM-DEMO-001",
+      "label": "Demo stablecoin treasury (synthetic)",
+      "amount": "100000.00",
+      "asset": "USDC",
+      "status": "human-locked"
+    },
+    {
+      "id": "CLM-DEMO-002",
+      "label": "Demo validator rewards accrued (synthetic)",
+      "amount": "42.05",
+      "asset": "SOL",
+      "status": "human-locked"
+    },
+    {
+      "id": "CLM-DEMO-003",
+      "label": "Demo operating-expense lock (synthetic)",
+      "amount": "12500.00",
+      "asset": "USDC",
+      "status": "human-locked"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "claimlock-attestation-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ClaimLock demo client: hash a locked claim-set and attest it on Solana devnet",
+  "scripts": {
+    "demo": "tsx src/attest.ts",
+    "attest": "tsx src/attest.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}
