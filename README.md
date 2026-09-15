@@ -21,38 +21,26 @@ A native Solana program stores an opaque 32-byte claim-set hash (Merkle root **o
 
 Explorer (program): [https://explorer.solana.com/address/2SzLAUB9oMh9k5zkTXnSnZ4KJHxPNcf9JokBssggBiYu?cluster=devnet](https://explorer.solana.com/address/2SzLAUB9oMh9k5zkTXnSnZ4KJHxPNcf9JokBssggBiYu?cluster=devnet)
 
+Explorer (program): [https://explorer.solana.com/address/2SzLAUB9oMh9k5zkTXnSnZ4KJHxPNcf9JokBssggBiYu?cluster=devnet](https://explorer.solana.com/address/2SzLAUB9oMh9k5zkTXnSnZ4KJHxPNcf9JokBssggBiYu?cluster=devnet)
+
 Canonical SHA-256 of `client/fixtures/locked-claim-set.demo.json` (`npm run demo -- --dry-run --canonical`):
 
 `5f150b6e2762f14fc03a928ba950ea9156ba8f72290a28381d8f4ca926e90481`
 
-**Live tx:** none yet — **do not invent a signature**. The SBF binary builds locally (`target/deploy/claimlock_attestation.so`, ~77KB). Deploy + demo are blocked until the attester is funded.
+**Live sample (devnet, 2026-09-15)** — explorer-confirmed, not invented:
 
-**Pubkey that needs funding (devnet SOL):**
+| | |
+|---|---|
+| Attest signature | `3ciSGz9hzwXH7u3F8VzdzVRv8FJcGuhaiWdGPfZCZhLVGMLZNjH6tWs8BLxkxQbUVtifGU2u4VwCsAhixBdzXJkm` |
+| Explorer (tx) | [https://explorer.solana.com/tx/3ciSGz9hzwXH7u3F8VzdzVRv8FJcGuhaiWdGPfZCZhLVGMLZNjH6tWs8BLxkxQbUVtifGU2u4VwCsAhixBdzXJkm?cluster=devnet](https://explorer.solana.com/tx/3ciSGz9hzwXH7u3F8VzdzVRv8FJcGuhaiWdGPfZCZhLVGMLZNjH6tWs8BLxkxQbUVtifGU2u4VwCsAhixBdzXJkm?cluster=devnet) |
+| Attestation PDA | [2P3V5bzTmGbQMTmeLqHBht5TU5dRKRF6xbKTLVkAfjYY](https://explorer.solana.com/address/2P3V5bzTmGbQMTmeLqHBht5TU5dRKRF6xbKTLVkAfjYY?cluster=devnet) |
+| claim_hash | `6b08dbe954595538b03198038a6ca0a0a701f0f5d954acf10b31de45b128514c` |
+| memo | `claimlock-v0` |
+| attester | `2562fyPRueCtmXqDQ7P2ozgT2gXsELqf5Pm82WMVQ3wm` |
+| Program deploy signature | `3jW7T54VXShmqagSuTq1m8BfAkyQk4UyfovxxCaBJNZMs861UXqBk2sKMoiW8j83PTTynqGc4qoxDSJMEKwKHMpr` |
+| Explorer (deploy) | [https://explorer.solana.com/tx/3jW7T54VXShmqagSuTq1m8BfAkyQk4UyfovxxCaBJNZMs861UXqBk2sKMoiW8j83PTTynqGc4qoxDSJMEKwKHMpr?cluster=devnet](https://explorer.solana.com/tx/3jW7T54VXShmqagSuTq1m8BfAkyQk4UyfovxxCaBJNZMs861UXqBk2sKMoiW8j83PTTynqGc4qoxDSJMEKwKHMpr?cluster=devnet) |
 
-`2562fyPRueCtmXqDQ7P2ozgT2gXsELqf5Pm82WMVQ3wm`
-
-Need about **1–2 SOL** on that address, then:
-
-```bash
-./scripts/deploy-devnet.sh
-cd client && CLAIMLOCK_KEYPAIR=../.keys/devnet-attester.json npm run demo
-```
-
-Paste the printed signature here as `https://explorer.solana.com/tx/<SIGNATURE>?cluster=devnet`.
-
-**Faucet attempts (2026-09-15, still 0 lamports):**
-
-| Source | Result |
-|--------|--------|
-| `solana airdrop` / `requestAirdrop` on `https://api.devnet.solana.com` | HTTP **429**: `You've either reached your airdrop limit today or the airdrop faucet has run dry. Please visit https://faucet.solana.com for alternate sources of test SOL` |
-| `https://faucet.solana.com/api/request` (amount 1 / 0.5 / 5) | `GitHub authentication is required. Please sign in with GitHub to use the faucet.` |
-| QuickNode faucet | Requires a **mainnet** SOL balance on the same wallet (anti-abuse) |
-| SolFaucet.com | Same public RPC; `internal error` / no tx id |
-| Pine Stake `POST https://api.pinestake.com/faucet` (own pool, ~0.61 SOL remaining) | `Login required` (GitHub OAuth + Cloudflare Turnstile) |
-| Blueshift `POST https://faucet-api.blueshift.gg/devnet/airdrop` (signed claim) | `Address not found. Please complete a Blueshift certification first.` (`is_certified: false`) |
-| Ellipsis Labs POW faucet | Remaining funded specs pay 0.02 SOL at difficulty 4, or ~100 lamports at difficulty 2; claiming still needs ~5k lamports of **tx fees** we do not have |
-
-This is a public-faucet outage / auth wall, not a program bug.
+Attester was funded with ~2.5 SOL on devnet (not mainnet traction). Public `requestAirdrop` was dry at the time; this is a one-wallet demo receipt.
 
 ### Prerequisites
 

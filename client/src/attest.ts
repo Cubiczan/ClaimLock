@@ -72,10 +72,13 @@ function canonicalStringify(value: unknown): string {
 }
 
 function loadKeypair(filePath: string): Keypair {
-  const resolved = path.isAbsolute(filePath) ? filePath : path.join(repoRoot, filePath);
-  if (!existsSync(resolved)) {
+  const candidates = path.isAbsolute(filePath)
+    ? [filePath]
+    : [path.resolve(process.cwd(), filePath), path.resolve(repoRoot, filePath)];
+  const resolved = candidates.find((p) => existsSync(p));
+  if (!resolved) {
     throw new Error(
-      `Keypair not found at ${resolved}. Generate with:\n  mkdir -p .keys && solana-keygen new --no-bip39-passphrase --outfile .keys/devnet-attester.json`,
+      `Keypair not found at ${filePath}. Generate with:\n  mkdir -p .keys && solana-keygen new --no-bip39-passphrase --outfile .keys/devnet-attester.json`,
     );
   }
   const raw = JSON.parse(readFileSync(resolved, "utf8")) as number[];
